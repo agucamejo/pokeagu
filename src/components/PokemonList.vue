@@ -1,25 +1,28 @@
 <template>
-      <!-- Sorting buttons -->
-      <div class="flex gap-5 justify-center flex-wrap">
-        <button @click="toggleSorting('weight')" class="button bg-slate-300 hover:bg-slate-400 p-2 rounded">
-          Ordenar por peso
-          <i :class="[sortByProperty === 'weight' ? (sortOrder ? 'arrow-up' : 'arrow-down') : '']"></i>
-        </button>
-        <button @click="toggleSorting('id')" class="button bg-slate-300 hover:bg-slate-400 p-2 rounded">
-          Ordenar por número
-          <i :class="[sortByProperty === 'id' ? (sortOrder ? 'arrow-up' : 'arrow-down') : '']"></i>
-        </button>
-        <button @click="toggleSorting('height')" class="button bg-slate-300 hover:bg-slate-400 p-2 rounded">
-          Ordenar por altura
-          <i :class="[sortByProperty === 'height' ? (sortOrder ? 'arrow-up' : 'arrow-down') : '']"></i>
-        </button>
-      </div>
+  <!-- Application title -->
+  <h1 class="text-3xl my-4 text-center ">Lista de Pokémon</h1>
+  <!-- Sorting buttons -->
+  <div class="flex gap-5 justify-center flex-wrap">
+    <button @click="toggleSorting('weight')" class="button bg-slate-300 hover:bg-slate-400 p-2 rounded">
+      Ordenar por peso
+      <i :class="[sortByProperty === 'weight' ? (sortOrder ? 'arrow-up' : 'arrow-down') : '']"></i>
+    </button>
+    <button @click="toggleSorting('id')" class="button bg-slate-300 hover:bg-slate-400 p-2 rounded">
+      Ordenar por número
+      <i :class="[sortByProperty === 'id' ? (sortOrder ? 'arrow-up' : 'arrow-down') : '']"></i>
+    </button>
+    <button @click="toggleSorting('height')" class="button bg-slate-300 hover:bg-slate-400 p-2 rounded">
+      Ordenar por altura
+      <i :class="[sortByProperty === 'height' ? (sortOrder ? 'arrow-up' : 'arrow-down') : '']"></i>
+    </button>
+  </div>
 
-      <!-- Pokemon list -->
-      <div class="flex justify-center flex-wrap ">
-        <ul>
-        <li v-for="pokemon in sortedPokemons" :key="pokemon.id" class="bg-white hover:bg-red-100 p-4 rounded shadow-md flex items-center my-4">
-          <div class="grid justify-items-center mr-5 ">
+  <!-- Pokemon list -->
+  <div class="flex justify-center flex-wrap">
+    <ul>
+      <router-link v-for="pokemon in sortedPokemons" :key="pokemon.id" :to="{ name: 'pokemon-details', params: { id: pokemon.id } }">
+        <li class="bg-white hover:bg-red-100 p-4 rounded shadow-md flex items-center my-4">
+          <div class="grid justify-items-center mr-5">
             <img :src="pokemon.image" :alt="pokemon.name" class="w-30 h-auto" />
             <strong class="text-xl">{{ pokemon.name.toUpperCase() }}</strong><br />
           </div>
@@ -29,9 +32,10 @@
             Altura: {{ formatNumber(pokemon.height, 1) }} m
           </div>
         </li>
-      </ul>
-      </div>
-  </template>
+      </router-link>
+    </ul>
+  </div>
+</template>
   
 <script>
 import axios from 'axios';
