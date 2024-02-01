@@ -1,6 +1,7 @@
 # PokeAgu
+PokeAgu es una aplicación web que obtiene sus datos de la API de Pokémon (https://pokeapi.co/api/v2/) y muestra los primeros 10 pokémons ordenados por peso, número y altura.
 
-This template should help get you started developing with Vue 3 in Vite.
+This template should help get you started developing with Vue 3 in Vite, using Tailwind CSS, Animate.css, and Vue Router.
 
 ## Recommended IDE Setup
 
@@ -14,6 +15,17 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ```sh
 npm install
+```
+### Aditional Dependencies 
+
+```sh
+npm install tailwindcss animate.css vue-router
+```
+
+### Tailwind CSS Configuration
+
+```sh
+npx tailwindcss init -p
 ```
 
 ### Compile and Hot-Reload for Development
